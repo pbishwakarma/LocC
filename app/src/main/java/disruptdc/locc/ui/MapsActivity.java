@@ -1,6 +1,7 @@
 package disruptdc.locc.ui;
 
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.Manifest;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.identity.intents.Address;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -25,7 +27,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import disruptdc.locc.R;
+
+import static disruptdc.locc.R.id.map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -37,12 +46,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationRequest mLocationRequest;
     Location mLastLocation;
     Marker mCurrLocationMarker;
+    Marker otherUserLocation;
+    Marker otherUserLocation1;
+    Marker otherUserLocation2;
+    private LatLng latLngVariable;
+    private Marker markerVariable;
+    Geocoder geocoder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(map);
+        geocoder = new Geocoder(this, Locale.getDefault());
         mapFragment.getMapAsync(this);
 
     }
@@ -135,6 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+
     @Override
     public void onLocationChanged(Location location)
     {
@@ -146,9 +164,71 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Sid Anche");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         markerOptions.alpha(0.6f);
         mCurrLocationMarker = mMap.addMarker(markerOptions);
+
+        LatLng latLng1 = new LatLng(38.905361,-77.03797 );
+        MarkerOptions markerOptions1 = new MarkerOptions();
+        markerOptions1.position(latLng1);
+        markerOptions1.title("Ben Dykstra");
+        markerOptions1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+        markerOptions1.alpha(0.6f);
+        otherUserLocation = mMap.addMarker(markerOptions1);
+
+        LatLng latLng2 = new LatLng(38.9035410,-77.033987 );
+        MarkerOptions markerOptions2 = new MarkerOptions();
+        markerOptions2.position(latLng2);
+        markerOptions2.title("Sally");
+        markerOptions2.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+        markerOptions2.alpha(0.6f);
+        otherUserLocation1 = mMap.addMarker(markerOptions2);
+
+        LatLng latLng3 = new LatLng(38.9097693197,-77.029523849);
+        MarkerOptions markerOptions3 = new MarkerOptions();
+        markerOptions3.position(latLng3);
+        markerOptions3.title("Timmy");
+        markerOptions3.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        markerOptions3.alpha(0.9f);
+        otherUserLocation2 = mMap.addMarker(markerOptions3);
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng point) {
+                //save current location
+                latLngVariable = point;
+
+                List<android.location.Address> addresses = new ArrayList<>();
+
+                try {
+                    addresses = geocoder.getFromLocation(point.latitude, point.longitude,1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                android.location.Address address = addresses.get(0);
+
+                if (address != null) {
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < address.getMaxAddressLineIndex(); i++){
+                        sb.append(address.getAddressLine(i) + "\n");
+                    }
+                    Toast.makeText(MapsActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
+                }
+
+                //remove previously placed Marker
+                if (markerVariable != null) {
+                    markerVariable.remove();
+                }
+
+                //place marker where user just clicked
+                markerVariable = mMap.addMarker(new MarkerOptions().position(point).title("LocCenter")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+            }
+        });
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
         if (mGoogleApiClient != null) {
