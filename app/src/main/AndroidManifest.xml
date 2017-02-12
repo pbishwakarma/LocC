@@ -62,6 +62,17 @@
 
         <activity android:name=".SettingsActivity" />
         <activity android:name=".MapPlaceHolderActivity"></activity>
+        <activity
+            android:name=".FriendsActivity"
+            android:label="@string/title_activity_friend"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
