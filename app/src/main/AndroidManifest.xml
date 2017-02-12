@@ -47,6 +47,7 @@
 
         <activity
             android:name=".ui.MapsActivity"
+            android:exported="true"
             android:label="@string/title_activity_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -1,8 +1,42 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MapsActivity" />
+    tools:context=".ui.MapsActivity" />-->
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".ui.MapsActivity">
+    
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MapsActivity" />
+
+    <ImageButton
+        android:id="@+id/addFriendsButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/friendsicon"
+        android:layout_gravity="bottom|left"
+        />
+
+    <ImageButton
+        android:id="@+id/pinButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/pinicon"
+        android:layout_gravity="bottom|right"/>
+
+
+</FrameLayout>
