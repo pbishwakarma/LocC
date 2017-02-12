@@ -1,4 +1,4 @@
-package disruptdc.locc;
+package disruptdc.locc.components;
 
 /**
  * Created by turner on 2/11/17.

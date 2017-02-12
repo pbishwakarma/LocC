@@ -1,4 +1,4 @@
-package disruptdc.locc;
+package disruptdc.locc.ui;
 
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -24,6 +24,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import disruptdc.locc.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,

@@ -1,4 +1,4 @@
-package disruptdc.locc;
+package disruptdc.locc.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import disruptdc.locc.components.DataStorage;
+import disruptdc.locc.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

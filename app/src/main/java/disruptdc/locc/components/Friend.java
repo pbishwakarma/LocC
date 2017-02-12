@@ -1,7 +1,7 @@
 /**
  * Created by Prajal Bishwakarma on 2/11/2017.
  */
-package disruptdc.locc;
+package disruptdc.locc.components;
 
 public class Friend extends Object {
 

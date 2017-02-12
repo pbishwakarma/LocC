@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".SettingsActivity">
+    tools:context=".ui.SettingsActivity">
 
     <TextView android:id="@+id/settings_label"
         android:text="@string/settings_label"
@@ -59,13 +59,15 @@
         android:layout_below="@+id/group_mode_layout"
         android:text="Location Selected"
         android:textSize="30dp"
+        android:layout_marginTop="25dp"
         android:gravity="center_horizontal"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:visibility="gone"/>
 
     <TextView android:id="@+id/second_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/group_mode_layout"
+        android:layout_below="@+id/area_selected"
         android:text="Second Label"
         android:textSize="20dp"
         android:gravity="center_horizontal"

@@ -1,10 +1,13 @@
-package disruptdc.locc;
+package disruptdc.locc.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import disruptdc.locc.components.DataStorage;
+import disruptdc.locc.R;
 
 public class MapPlaceHolderActivity extends AppCompatActivity {
 
