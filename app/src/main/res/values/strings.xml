@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">LocC</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_friend">FriendActivity</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="someFriends"> LocC in with your friends!</string>
     <string name="settings_label">Create LocC</string>
 </resources>
