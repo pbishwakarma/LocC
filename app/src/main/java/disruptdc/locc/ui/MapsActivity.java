@@ -1,5 +1,6 @@
 package disruptdc.locc.ui;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
@@ -11,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -34,6 +37,7 @@ import java.util.Locale;
 
 import disruptdc.locc.R;
 
+import static disruptdc.locc.R.id.addFriendsButton;
 import static disruptdc.locc.R.id.map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -61,6 +65,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(map);
         geocoder = new Geocoder(this, Locale.getDefault());
         mapFragment.getMapAsync(this);
+
+        // Button to navigate to menu to add friends to LocC
+        ImageButton iconButton = (ImageButton) findViewById(R.id.addFriendsButton);
+
+        iconButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MapsActivity.this, FriendsActivity.class));
+            }
+
+        });
+
+        //Button to navigate to menu to set center
+        ImageButton setCenterButton = (ImageButton) findViewById(R.id.pinButton);
+
+        setCenterButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
+            }
+        });
+
 
     }
 
