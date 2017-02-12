@@ -6,6 +6,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -196,6 +197,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         markerOptions.alpha(0.6f);
         mCurrLocationMarker = mMap.addMarker(markerOptions);
+
+        for(int i = 0; i < DataStorage.friends.size(); i++){
+            if (DataStorage.friends.get(i).getChecked()) {
+                double lat = DataStorage.friends.get(i).getLatitude();
+                double lng = DataStorage.friends.get(i).getLongitude();
+                LatLng latLng1 = new LatLng(lat, lng);
+                MarkerOptions markerOptions1 = new MarkerOptions();
+                markerOptions1.position(latLng1);
+                markerOptions1.title(DataStorage.friends.get(i).getName());
+                markerOptions1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+                markerOptions1.alpha(0.6f);
+                otherUserLocation = mMap.addMarker(markerOptions1);
+            }
+        }
+        /*
         if(DataStorage.BenBoolean == true){
             LatLng latLng1 = new LatLng(38.905361,-77.03797 );
             MarkerOptions markerOptions1 = new MarkerOptions();
@@ -245,7 +261,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             markerOptions5.alpha(0.9f);
             otherUserLocation4 = mMap.addMarker(markerOptions5);
         }
-
+*/
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 

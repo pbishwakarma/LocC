@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
+import disruptdc.locc.components.DataStorage;
 import disruptdc.locc.components.Friend;
 import disruptdc.locc.R;
 
@@ -36,23 +37,21 @@ public class FriendsActivity extends Activity {
     }
 
     public void display(){
-        ArrayList<Friend> friends = new ArrayList<>();
+        DataStorage.friends = new ArrayList<>();
 
-        Friend user1 = new Friend("Sid", false);
-        Friend user2 = new Friend("Ben", false);
-        Friend user3 = new Friend("Prajal", false);
-        Friend user4 = new Friend("Turner", false);
-        Friend user5 = new Friend("Sally", false);
-        Friend user6 = new Friend("Timmy", false);
+        Friend user2 = new Friend("Ben", false, 38.905361,-77.03797);
+        Friend user3 = new Friend("Prajal", false, 38.9035410,-77.033987 );
+        Friend user4 = new Friend("Turner", false, 38.906346354, -77.035177946);
+        Friend user5 = new Friend("Sally", false, 38.90729812, -77.03649759);
+        Friend user6 = new Friend("Timmy", false, 38.9080662064, -77.009224891);
 
-        friends.add(user1);
-        friends.add(user2);
-        friends.add(user3);
-        friends.add(user4);
-        friends.add(user5);
-        friends.add(user6);
+        DataStorage.friends.add(user2);
+        DataStorage.friends.add(user3);
+        DataStorage.friends.add(user4);
+        DataStorage.friends.add(user5);
+        DataStorage.friends.add(user6);
 
-        friendsList = new CheckBoxList(this, R.layout.friend_info, friends);
+        friendsList = new CheckBoxList(this, R.layout.friend_info, DataStorage.friends);
         ListView listView = (ListView) findViewById(R.id.listView1);
         listView.setAdapter(friendsList);
 
