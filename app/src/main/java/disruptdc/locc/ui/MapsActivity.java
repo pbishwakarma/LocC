@@ -72,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(map);
         geocoder = new Geocoder(this, Locale.getDefault());
         mapFragment.getMapAsync(this);
+        GEOFENCE_RADIUS = DataStorage.radius;
 
         // Button to navigate to menu to add friends to LocC
         ImageButton iconButton = (ImageButton) findViewById(R.id.addFriendsButton);
@@ -185,7 +186,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
-    private static final float GEOFENCE_RADIUS = DataStorage.radius; // in meters
+    private static float GEOFENCE_RADIUS = DataStorage.radius; // in meters
 
 
     // Draw Geofence circle on GoogleMap

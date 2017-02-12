@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Created by turner on 2/11/17.
  */
 public class DataStorage {
-    public static boolean BenBoolean;
-    public static boolean TurnerBoolean;
+    public static boolean BenBoolean = true;
+    public static boolean TurnerBoolean = true;
     public static boolean PrajalBoolean;
     public static boolean SallyBoolean;
     public static boolean TimmyBoolean;
