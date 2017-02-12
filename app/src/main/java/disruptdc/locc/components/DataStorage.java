@@ -15,6 +15,7 @@ public class DataStorage {
     public static boolean shouldDraw;
 
     public static  ArrayList<Friend> friends = new ArrayList<>();
+    public static Friend leader;
 
     public static boolean teamLeader;
 

@@ -28,8 +28,43 @@ public class LeaderSelectionActivity extends AppCompatActivity {
     private Button chooseLeader;
     private ArrayList<Friend> friends;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_leader_selection);
+
+        chooseLeader = (Button)findViewById(R.id.pickleader);
+        chooseLeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LeaderSelectionActivity.this, MapsActivity.class));
+            }
+        });
+        chooseLeader.setEnabled(false);
+
+        leads = (RadioGroup)findViewById(R.id.leaders);
+        leads.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                if(id == 0){
+                    DataStorage.leader = null;
+                } else{
+                    DataStorage.leader = friends.get(id);
+                }
+                chooseLeader.setEnabled(true);
+            }
+        });
+
+        populateFriends();
+        populateLeaders();
+
+
+
+    }
+
     public void populateFriends(){
-        friends = new ArrayList<Friend>();
+        friends = new ArrayList<>();
         friends.add(new Friend("Sid", true, 0, 0)); // make sure this doesn't make it into DataStorage
         for(int i = 0; i < DataStorage.friends.size(); i++){
             if(DataStorage.friends.get(i).getChecked()){
@@ -38,27 +73,14 @@ public class LeaderSelectionActivity extends AppCompatActivity {
         }
     }
     public void populateLeaders(){
-        leads = (RadioGroup)findViewById(R.id.leaders);
         for(int i = 0; i < friends.size(); i++){
             RadioButton rdbtn = new RadioButton(this);
             rdbtn.setText(friends.get(i).getName());
+            rdbtn.setId(i);
             leads.addView(rdbtn);
         }
     }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leader_selection);
-        populateFriends();
-        populateLeaders();
-        chooseLeader = (Button)findViewById(R.id.pickleader);
 
-        chooseLeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LeaderSelectionActivity.this, MapsActivity.class));
-            }
-        });
 
-    }
+
 }
