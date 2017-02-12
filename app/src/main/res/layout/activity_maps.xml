@@ -28,7 +28,7 @@
         android:layout_width="116dp"
         android:layout_height="109dp"
         android:src="@drawable/friendsicon"
-        android:layout_gravity="bottom|left"
+        android:layout_gravity="bottom|center"
         android:background="@null"
         />
 

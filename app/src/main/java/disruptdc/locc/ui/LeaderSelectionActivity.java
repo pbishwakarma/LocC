@@ -1,6 +1,7 @@
 package disruptdc.locc.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 
@@ -20,77 +24,41 @@ import disruptdc.locc.components.Friend;
 
 public class LeaderSelectionActivity extends AppCompatActivity {
 
-    private CheckBoxList friendsList;
+    private RadioGroup leads;
+    private Button chooseLeader;
+    private ArrayList<Friend> friends;
 
+    public void populateFriends(){
+        friends = new ArrayList<Friend>();
+        friends.add(new Friend("Sid", true, 0, 0)); // make sure this doesn't make it into DataStorage
+        for(int i = 0; i < DataStorage.friends.size(); i++){
+            if(DataStorage.friends.get(i).getChecked()){
+                friends.add(DataStorage.friends.get(i));
+            }
+        }
+    }
+    public void populateLeaders(){
+        leads = (RadioGroup)findViewById(R.id.leaders);
+        for(int i = 0; i < friends.size(); i++){
+            RadioButton rdbtn = new RadioButton(this);
+            rdbtn.setText(friends.get(i).getName());
+            leads.addView(rdbtn);
+        }
+    }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_selection);
+        populateFriends();
+        populateLeaders();
+        chooseLeader = (Button)findViewById(R.id.pickleader);
 
-        display();
-    }
-
-    public void display(){
-        ArrayList<Friend> friends = new ArrayList<>();
-
-        for (Friend friend : DataStorage.friends) {
-            if (friend.getChecked()) friends.add(friend);
-        }
-
-
-        friendsList = new CheckBoxList(this, R.layout.friend_info, friends);
-        ListView listView = (ListView) findViewById(R.id.leader_list_view);
-        listView.setAdapter(friendsList);
-    }
-
-    private class CheckBoxList extends ArrayAdapter<Friend> {
-
-        private ArrayList<Friend> friendList;
-
-        public CheckBoxList(Context context, int textViewId, ArrayList<Friend> friendList){
-            super(context, textViewId, friendList);
-            this.friendList = new ArrayList<Friend>();
-            this.friendList.addAll(friendList);
-        }
-
-        private class tempView{
-            CheckBox name;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent){
-
-            tempView temp = null;
-
-            if(convertView == null) {
-                LayoutInflater vi = (LayoutInflater) getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE);
-                convertView = vi.inflate(R.layout.friend_info, null);
-
-                temp = new tempView();
-                temp.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
-                convertView.setTag(temp);
-
-                temp.name.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        CheckBox cb = (CheckBox) v;
-                        Friend friend = (Friend) cb.getTag();
-                        friend.setChecked(cb.isChecked());
-
-                    }
-                });
+        chooseLeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LeaderSelectionActivity.this, MapsActivity.class));
             }
-            else{
-                temp = (tempView) convertView.getTag();
-            }
-
-            Friend friend = friendList.get(position);
-            temp.name.setText(friend.getName());
-            temp.name.setChecked(friend.getChecked());
-            temp.name.setTag(friend);
-
-            return convertView;
-        }
+        });
 
     }
 }

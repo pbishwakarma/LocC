@@ -8,17 +8,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="@string/someFriends"
+        android:text="@string/leaderSelection"
         android:textSize="20sp" />
 
+    <RadioGroup
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/leaders"/>
+
     <Button
-        android:id="@+id/findSelected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pick your friends: "/>
+        android:layout_gravity="bottom"
+        android:text="Designate Leader"
+        android:id="@+id/pickleader"/>
 
-    <ListView
-        android:id="@+id/leader_list_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></ListView>
 </LinearLayout>
