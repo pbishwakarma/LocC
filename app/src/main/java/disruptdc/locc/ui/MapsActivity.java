@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Locale;
 
 import disruptdc.locc.R;
+import disruptdc.locc.components.DataStorage;
 
 import static disruptdc.locc.R.id.map;
 
@@ -49,6 +50,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker otherUserLocation;
     Marker otherUserLocation1;
     Marker otherUserLocation2;
+    Marker otherUserLocation3;
+    Marker otherUserLocation4;
     private LatLng latLngVariable;
     private Marker markerVariable;
     Geocoder geocoder;
@@ -167,30 +170,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         markerOptions.alpha(0.6f);
         mCurrLocationMarker = mMap.addMarker(markerOptions);
+        if(DataStorage.BenBoolean == true){
+            LatLng latLng1 = new LatLng(38.905361,-77.03797 );
+            MarkerOptions markerOptions1 = new MarkerOptions();
+            markerOptions1.position(latLng1);
+            markerOptions1.title("Ben Dykstra");
+            markerOptions1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+            markerOptions1.alpha(0.6f);
+            otherUserLocation = mMap.addMarker(markerOptions1);
+        }
 
-        LatLng latLng1 = new LatLng(38.905361,-77.03797 );
-        MarkerOptions markerOptions1 = new MarkerOptions();
-        markerOptions1.position(latLng1);
-        markerOptions1.title("Ben Dykstra");
-        markerOptions1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-        markerOptions1.alpha(0.6f);
-        otherUserLocation = mMap.addMarker(markerOptions1);
+        if(DataStorage.SallyBoolean == true){
+            LatLng latLng2 = new LatLng(38.9035410,-77.033987 );
+            MarkerOptions markerOptions2 = new MarkerOptions();
+            markerOptions2.position(latLng2);
+            markerOptions2.title("Sally");
+            markerOptions2.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+            markerOptions2.alpha(0.6f);
+            otherUserLocation1 = mMap.addMarker(markerOptions2);
+        }
 
-        LatLng latLng2 = new LatLng(38.9035410,-77.033987 );
-        MarkerOptions markerOptions2 = new MarkerOptions();
-        markerOptions2.position(latLng2);
-        markerOptions2.title("Sally");
-        markerOptions2.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-        markerOptions2.alpha(0.6f);
-        otherUserLocation1 = mMap.addMarker(markerOptions2);
+        if(DataStorage.TimmyBoolean == true) {
+            LatLng latLng3 = new LatLng(38.906346354, -77.035177946);
+            MarkerOptions markerOptions3 = new MarkerOptions();
+            markerOptions3.position(latLng3);
+            markerOptions3.title("Timmy");
+            markerOptions3.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+            markerOptions3.alpha(0.6f);
+            otherUserLocation2 = mMap.addMarker(markerOptions3);
+        }
 
-        LatLng latLng3 = new LatLng(38.9097693197,-77.029523849);
-        MarkerOptions markerOptions3 = new MarkerOptions();
-        markerOptions3.position(latLng3);
-        markerOptions3.title("Timmy");
-        markerOptions3.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        markerOptions3.alpha(0.9f);
-        otherUserLocation2 = mMap.addMarker(markerOptions3);
+        if(DataStorage.PrajalBoolean == true) {
+            LatLng latLng4 = new LatLng(38.90729812, -77.03649759);
+            MarkerOptions markerOptions4 = new MarkerOptions();
+            markerOptions4.position(latLng4);
+            markerOptions4.title("Prajal");
+            markerOptions4.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+            markerOptions4.alpha(0.6f);
+            otherUserLocation3 = mMap.addMarker(markerOptions4);
+        }
+
+        if(DataStorage.TurnerBoolean == true) {
+            LatLng latLng5 = new LatLng(38.9080662064, -77.009224891);
+            MarkerOptions markerOptions5 = new MarkerOptions();
+            markerOptions5.position(latLng5);
+            markerOptions5.title("Turner");
+            markerOptions5.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            markerOptions5.alpha(0.9f);
+            otherUserLocation4 = mMap.addMarker(markerOptions5);
+        }
+
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
