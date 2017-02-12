@@ -12,6 +12,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Map;
+
 import disruptdc.locc.components.DataStorage;
 import disruptdc.locc.R;
 
@@ -110,6 +112,13 @@ public class SettingsActivity extends AppCompatActivity {
     public void loccIn(View view) {
         if (DataStorage.teamLeader == true) {
             Intent intent = new Intent(this, LeaderSelectionActivity.class);
+
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, MapsActivity.class);
+
+            DataStorage.pinDroppable = true;
+            DataStorage.shouldDraw = true;
 
             startActivity(intent);
         }
