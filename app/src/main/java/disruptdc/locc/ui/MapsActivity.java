@@ -81,7 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         });
 
-        //Button to navigate to menu to set center
+        /*//Button to navigate to menu to set center
         ImageButton setCenterButton = (ImageButton) findViewById(R.id.pinButton);
 
         setCenterButton.setOnClickListener(new View.OnClickListener(){
@@ -89,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v){
                 startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
             }
-        });
+        });*/
 
 
     }
