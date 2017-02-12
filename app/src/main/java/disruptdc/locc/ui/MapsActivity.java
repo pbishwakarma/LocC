@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
@@ -73,6 +74,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         geocoder = new Geocoder(this, Locale.getDefault());
         mapFragment.getMapAsync(this);
         GEOFENCE_RADIUS = DataStorage.radius;
+
+        ImageButton friendsButton = (ImageButton) findViewById(R.id.addFriendsButton);
+
+        if (DataStorage.pinDroppable) {
+            friendsButton.setVisibility(View.GONE);
+        }
 
         // Button to navigate to menu to add friends to LocC
         ImageButton iconButton = (ImageButton) findViewById(R.id.addFriendsButton);

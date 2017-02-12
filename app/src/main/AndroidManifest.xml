@@ -63,7 +63,6 @@
 
         <activity android:name=".ui.SettingsActivity">
         </activity>
-        <activity android:name=".ui.MapPlaceHolderActivity" />
         <activity
             android:name=".ui.FriendsActivity"
             android:label="@string/title_activity_friend"
