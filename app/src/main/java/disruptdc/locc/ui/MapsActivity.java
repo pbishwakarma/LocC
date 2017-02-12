@@ -250,7 +250,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 MarkerOptions markerOptions1 = new MarkerOptions();
                 markerOptions1.position(latLng1);
                 markerOptions1.title(DataStorage.friends.get(i).getName());
-                markerOptions1.icon(BitmapDescriptorFactory.defaultMarker((float) Math.random()*360));
+                markerOptions1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
                 markerOptions1.alpha(0.6f);
                 otherUserLocation = mMap.addMarker(markerOptions1);
             }
