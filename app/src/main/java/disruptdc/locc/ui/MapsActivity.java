@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ImageButton friendsButton = (ImageButton) findViewById(R.id.addFriendsButton);
 
-        if (DataStorage.pinDroppable) {
+        if (DataStorage.pinDroppable || DataStorage.leader != null) {
             friendsButton.setVisibility(View.GONE);
         }
 

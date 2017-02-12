@@ -35,6 +35,8 @@ public class FriendsActivity extends Activity {
         setContentView(R.layout.activity_friends);
         aButton = (Button) findViewById(R.id.nextButton1);
 
+        DataStorage.leader = null;
+
         display();
         checkButtonPress();
 
