@@ -1,6 +1,8 @@
 package disruptdc.locc.ui;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +23,18 @@ import disruptdc.locc.components.Friend;
 import disruptdc.locc.R;
 
 public class FriendsActivity extends Activity {
-
+    private boolean friendSelected = false;
+    private int checkCount = 0;
     private CheckBoxList friendsList = null;
+    private Button aButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
+        aButton = (Button) findViewById(R.id.nextButton1);
 
         display();
-
         checkButtonPress();
 
 
@@ -98,6 +102,18 @@ public class FriendsActivity extends Activity {
                         CheckBox cb = (CheckBox) v;
                         Friend friend = (Friend) cb.getTag();
                         friend.setChecked(cb.isChecked());
+                        if(cb.isChecked()){
+                            checkCount++;
+                        } else{
+                            checkCount--;
+                        }
+
+                        if(checkCount > 0){
+                            aButton.setClickable(true);
+                        } else{
+                            aButton.setClickable(false);
+                        }
+
                     }
                 });
             }
@@ -116,20 +132,24 @@ public class FriendsActivity extends Activity {
     }
 
     private void checkButtonPress() {
-        Button aButton = (Button) findViewById(R.id.findSelected);
         aButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 StringBuffer response = new StringBuffer();
                 response.append("The following friends were added to your LocC \n");
 
                 ArrayList<Friend> friends = friendsList.friendList;
                 for (int i = 0; i < friends.size(); i++) {
                     Friend tempFriend = friends.get(i);
-                    response.append("\n" + tempFriend.getName());
+                    if(tempFriend.getChecked()){
+                        response.append("\n" + tempFriend.getName());
+                    }
                 }
 
                 Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+
+                startActivity(new Intent(FriendsActivity.this, SettingsActivity.class));
 
             }
         });
