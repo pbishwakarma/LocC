@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">LocC</string>
     <string name="title_activity_maps">Map</string>
+    <string name="settings_label">Create LocC</string>
 </resources>
