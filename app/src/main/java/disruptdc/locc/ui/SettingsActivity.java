@@ -96,9 +96,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                DataStorage.radius = radiusValue;
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
 
@@ -110,6 +108,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void loccIn(View view) {
+        DataStorage.radius = radiusValue;
+
         if (DataStorage.teamLeader == true) {
             Intent intent = new Intent(this, LeaderSelectionActivity.class);
 
