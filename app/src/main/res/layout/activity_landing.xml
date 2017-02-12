@@ -7,17 +7,50 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#8B1A1A"
     tools:context=".ui.LandingActivity">
+
+    <Button
+        android:background="#ffffff"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
+        android:id="@+id/button3"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:textColor="#ffffff"
+        android:text= "By: Benjamin D. | Prajal B. | Turner A. | Sid A. "
+        android:textSize="10dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignEnd="@+id/button3"
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Welcome to LocC!"
+        android:text="LOCC"
         android:id="@+id/textView"
+        android:textColor="#ffffff"
+        android:typeface= "sans"
+        android:textSize="80dp"
+        android:textStyle="bold"
+        android:layout_marginTop="51dp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:background="@drawable/mybutton"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="122dp" />
+        android:layout_marginBottom="42dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,16 +58,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Please allow access to your phone&apos;s location services to continue."
         android:id="@+id/textView2"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal" />
+        android:textStyle="bold"
+        android:textColor="#ffffff"
 
-    <Button
-        android:text="Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="82dp"
-        android:id="@+id/button2" />
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

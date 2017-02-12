@@ -206,7 +206,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 MarkerOptions markerOptions1 = new MarkerOptions();
                 markerOptions1.position(latLng1);
                 markerOptions1.title(DataStorage.friends.get(i).getName());
-                markerOptions1.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+                markerOptions1.icon(BitmapDescriptorFactory.fromResource(R.drawable.unknownperson));
                 markerOptions1.alpha(0.6f);
                 otherUserLocation = mMap.addMarker(markerOptions1);
             }
@@ -257,48 +257,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             MarkerOptions markerOptions5 = new MarkerOptions();
             markerOptions5.position(latLng5);
             markerOptions5.title("Turner");
-            markerOptions5.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            markerOptions5.icon(BitmapDescriptorFactory.fromResource(R.drawable.turnerpic));
             markerOptions5.alpha(0.9f);
             otherUserLocation4 = mMap.addMarker(markerOptions5);
         }
 */
+        if(DataStorage.pinDroppable == true)
+        {
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
+            {
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng point) {
+                    //save current location
+                    latLngVariable = point;
 
-            @Override
-            public void onMapClick(LatLng point) {
-                //save current location
-                latLngVariable = point;
+                    List<android.location.Address> addresses = new ArrayList<>();
 
-                List<android.location.Address> addresses = new ArrayList<>();
-
-                try {
-                    addresses = geocoder.getFromLocation(point.latitude, point.longitude,1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                android.location.Address address = addresses.get(0);
-
-                if (address != null) {
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < address.getMaxAddressLineIndex(); i++){
-                        sb.append(address.getAddressLine(i) + "\n");
+                    try {
+                        addresses = geocoder.getFromLocation(point.latitude, point.longitude,1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                    Toast.makeText(MapsActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
+
+                    android.location.Address address = addresses.get(0);
+
+                    if (address != null) {
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < address.getMaxAddressLineIndex(); i++){
+                            sb.append(address.getAddressLine(i) + "\n");
+                        }
+                        Toast.makeText(MapsActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
+                    }
+
+                    //remove previously placed Marker
+                    if (markerVariable != null) {
+                        markerVariable.remove();
+                    }
+
+                    //place marker where user just clicked
+                    markerVariable = mMap.addMarker(new MarkerOptions().position(point).title("LocCenter")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
                 }
+            });
 
-                //remove previously placed Marker
-                if (markerVariable != null) {
-                    markerVariable.remove();
-                }
-
-                //place marker where user just clicked
-                markerVariable = mMap.addMarker(new MarkerOptions().position(point).title("LocCenter")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
-            }
-        });
+        }
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));

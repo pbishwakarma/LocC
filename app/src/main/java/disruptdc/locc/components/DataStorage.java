@@ -11,6 +11,7 @@ public class DataStorage {
     public static boolean PrajalBoolean;
     public static boolean SallyBoolean;
     public static boolean TimmyBoolean;
+    public static boolean pinDroppable;
 
     public static  ArrayList<Friend> friends = new ArrayList<>();
 
