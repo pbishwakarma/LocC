@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:progress="0"
-        android:max="99" />
+        android:max="14" />
 
     <Button android:id="@+id/locc_in_button"
         android:layout_height="wrap_content"
