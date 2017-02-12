@@ -23,7 +23,7 @@ public class MapPlaceHolderActivity extends AppCompatActivity {
         selectLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataStorage.locationSelected = true;
+                DataStorage.teamLeader = false;
 
                 Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
 

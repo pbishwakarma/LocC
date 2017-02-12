@@ -12,4 +12,7 @@ public class DataStorage {
     public static boolean PrajalBoolean;
     public static boolean SallyBoolean;
     public static boolean TimmyBoolean;
+    public static boolean teamLeader;
+
+    public static int radius;
 }

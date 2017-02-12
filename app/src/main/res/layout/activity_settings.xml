@@ -64,15 +64,36 @@
         android:textStyle="bold|italic"
         android:visibility="gone"/>
 
-    <TextView android:id="@+id/second_label"
+    <TextView android:id="@+id/radius_label"
+        android:text="Radius: 100 meters"
+        android:layout_below="@+id/area_selected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/area_selected"
-        android:text="Second Label"
-        android:textSize="20dp"
         android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:layout_marginTop="25dp"/>
+        android:textSize="20dp"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold" />
+
+    <SeekBar android:id="@+id/radius_seekbar"
+        android:layout_below="@+id/radius_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:progress="0"
+        android:max="9" />
+
+    <Button android:id="@+id/locc_in_button"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:text="LocC In"
+        android:textSize="30dp"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:onClick="loccIn"/>
 
 
 
