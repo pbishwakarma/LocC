@@ -15,24 +15,35 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/group_mode_label"
         android:orientation="horizontal"
-        android:gravity="left"></LinearLayout>
-
-    <TextView android:id="@+id/area_selected"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/group_mode_layout"
-        android:text="Location Selected"
-        android:textSize="30dp"
-        android:layout_marginTop="25dp"
-        android:gravity="center_horizontal"
-        android:textStyle="bold|italic"
-        android:visibility="gone"/>
+        android:gravity="center">
+        <TextView android:id="@+id/leader_label"
+            android:textColor="@color/cast_expanded_controller_text_color"
+            android:text="Leader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textAlignment="textEnd"
+            android:paddingRight="0dp"
+            android:layout_marginRight="0dp"
+            android:textStyle="bold" />
+        <Switch android:id="@+id/group_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="Area"
+            android:textOn="Leader" />
+        <TextView android:id="@+id/area_label"
+            android:textColor="@color/cast_expanded_controller_text_color"
+            android:text="Area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3.5"/>
+    </LinearLayout>
 
     <Button android:id="@+id/locc_in_button"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:text="LocC In"
+        android:text="Locc In"
         android:textSize="30dp"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
@@ -40,43 +51,6 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:onClick="loccIn"/>
-
-    <Button
-        android:background="#ffffff"
-        android:layout_width="300dp"
-        android:layout_height="10dp"
-        android:id="@+id/button9"
-        android:layout_below="@+id/settings_label"
-        android:layout_centerHorizontal="true" />
-
-    <Switch android:id="@+id/group_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOff="Area"
-        android:textOn="Leader"
-        android:layout_above="@+id/group_mode_label"
-        android:layout_centerHorizontal="true" />
-
-    <TextView android:id="@+id/leader_label"
-        android:text="Leader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:textAlignment="textEnd"
-        android:paddingRight="0dp"
-        android:textStyle="bold"
-        android:layout_alignBaseline="@+id/group_switch"
-        android:layout_alignBottom="@+id/group_switch"
-        android:layout_toStartOf="@+id/group_switch" />
-
-    <TextView android:id="@+id/area_label"
-        android:text="Area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="3.5"
-        android:layout_alignBaseline="@+id/group_switch"
-        android:layout_alignBottom="@+id/group_switch"
-        android:layout_toEndOf="@+id/group_switch" />
 
     <TextView android:id="@+id/settings_label"
         android:text="@string/settings_label"
@@ -97,34 +71,39 @@
         android:gravity="center_horizontal"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginBottom="106dp"
+        android:layout_marginTop="25dp"
         android:textColor="@color/cast_expanded_controller_text_color"
-        android:layout_above="@+id/locc_in_button"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/group_mode_layout"/>
 
     <SeekBar android:id="@+id/radius_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
         android:max="14"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignTop="@+id/radius_label"
+        android:layout_below="@+id/radius_label"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_margin="10dp"
         android:background="#ffffff" />
 
     <TextView android:id="@+id/group_mode_label"
-        android:text="Select LocC Mode"
+        android:text="Select Locc Mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:gravity="center"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:textColor="#ffffff"
-        android:layout_below="@+id/button9"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/settings_label"/>
 
+    <TextView android:id="@+id/group_mode_explanation"
+        android:text="@string/group_mode_explanation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/locc_in_button"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="55dp" />
 
 </RelativeLayout>

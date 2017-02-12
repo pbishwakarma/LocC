@@ -24,8 +24,6 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView leaderLabel;
     private TextView areaLabel;
 
-    private TextView areaSelected;
-
     private SeekBar radiusSeekbar;
 
     private int radiusValue;
@@ -41,8 +39,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         leaderLabel = (TextView) findViewById(R.id.leader_label);
         areaLabel = (TextView) findViewById(R.id.area_label);
-
-        areaSelected = (TextView) findViewById(R.id.area_selected);
 
         // if location already selected, modify view accordingly
 //        if (DataStorage.locationSelected) {
@@ -64,15 +60,11 @@ public class SettingsActivity extends AppCompatActivity {
 
                     leaderLabel.setTypeface(null, Typeface.NORMAL);
                     areaLabel.setTypeface(null, Typeface.BOLD);
-
-                    areaSelected.setVisibility(View.VISIBLE);
                 } else {
                     DataStorage.teamLeader = true;
 
                     leaderLabel.setTypeface(null, Typeface.BOLD);
                     areaLabel.setTypeface(null, Typeface.NORMAL);
-
-                    areaSelected.setVisibility(View.GONE);
                 }
             }
         });
