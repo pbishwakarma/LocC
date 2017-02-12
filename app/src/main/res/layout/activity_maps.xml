@@ -32,14 +32,14 @@
         android:background="@null"
         />
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/pinButton"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/pinicon"
         android:layout_gravity="bottom|right"
         android:background="@null"
-        />
+        />-->
 
 
 </FrameLayout>
