@@ -11,7 +11,7 @@ public class Friend extends Object {
     private double latitude;
 
 
-    public Friend(String name, Boolean checked, double longitude, double latitude){
+    public Friend(String name, Boolean checked, double latitude, double longitude){
         this.name = name;
         this.checked = checked;
         this.longitude = longitude;
