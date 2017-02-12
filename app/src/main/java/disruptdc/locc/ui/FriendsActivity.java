@@ -2,6 +2,7 @@ package disruptdc.locc.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -95,6 +96,7 @@ public class FriendsActivity extends Activity {
 
                 temp = new tempView();
                 temp.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
+                temp.name.setTextColor(Color.WHITE);
                 convertView.setTag(temp);
 
                 temp.name.setOnClickListener(new View.OnClickListener() {

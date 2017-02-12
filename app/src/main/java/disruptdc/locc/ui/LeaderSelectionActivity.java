@@ -38,6 +38,7 @@ public class LeaderSelectionActivity extends AppCompatActivity {
         chooseLeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DataStorage.shouldDraw = true;
                 startActivity(new Intent(LeaderSelectionActivity.this, MapsActivity.class));
             }
         });
