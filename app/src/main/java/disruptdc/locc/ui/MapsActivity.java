@@ -2,6 +2,7 @@ package disruptdc.locc.ui;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
@@ -27,6 +28,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -182,6 +185,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+    private static final float GEOFENCE_RADIUS = DataStorage.radius; // in meters
+
+
+    // Draw Geofence circle on GoogleMap
+    private Circle geoFenceLimits;
+    private void drawGeoFence() {
+
+        if ( geoFenceLimits != null )
+            geoFenceLimits.remove();
+        if(DataStorage.pinDroppable == false) {
+            if (DataStorage.shouldDraw == true) {
+                CircleOptions circleOptions = new CircleOptions()
+                        .center(mCurrLocationMarker.getPosition())
+                        .strokeColor(Color.argb(50, 70, 70, 70))
+                        .fillColor(Color.argb(100, 150, 150, 150))
+                        .radius(GEOFENCE_RADIUS);
+                geoFenceLimits = mMap.addCircle(circleOptions);
+            }
+        }
+        else{
+            CircleOptions circleOptions = new CircleOptions()
+                    .center( markerVariable.getPosition())
+                    .strokeColor(Color.argb(50, 70,70,70))
+                    .fillColor( Color.argb(100, 150,150,150) )
+                    .radius( GEOFENCE_RADIUS );
+            geoFenceLimits = mMap.addCircle( circleOptions );
+        }
+
+    }
+
 
     @Override
     public void onLocationChanged(Location location)
@@ -197,6 +230,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         markerOptions.alpha(0.6f);
         mCurrLocationMarker = mMap.addMarker(markerOptions);
+        if (DataStorage.pinDroppable == false){
+            drawGeoFence();
+        }
 
         for(int i = 0; i < DataStorage.friends.size(); i++){
             if (DataStorage.friends.get(i).getChecked()) {
@@ -298,7 +334,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //place marker where user just clicked
                     markerVariable = mMap.addMarker(new MarkerOptions().position(point).title("LocCenter")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
+                    drawGeoFence();
                 }
             });
 

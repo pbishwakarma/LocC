@@ -12,10 +12,11 @@ public class DataStorage {
     public static boolean SallyBoolean;
     public static boolean TimmyBoolean;
     public static boolean pinDroppable;
+    public static boolean shouldDraw;
 
     public static  ArrayList<Friend> friends = new ArrayList<>();
 
     public static boolean teamLeader;
 
-    public static int radius;
+    public static int radius = 500;
 }
